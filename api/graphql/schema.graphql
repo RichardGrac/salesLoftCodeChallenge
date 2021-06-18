@@ -1,3 +1,24 @@
+type PageInfo {
+  perPage: Int!
+  currentPage: Int!
+  nextPage: Int
+  prevPage: Int
+  totalPages: Int!
+  totalCount: Int!
+}
+
+type Person {
+  id: ID!
+  name: String!
+  email: String!
+  jobTitle: String!
+}
+
+type PersonsConnection {
+  pageInfo: PageInfo!
+  edges: [Person!]!
+}
+
 type Query {
-  sayHello: String!
+  persons: PersonsConnection!
 }

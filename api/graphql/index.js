@@ -1,5 +1,7 @@
+const { persons } = require('./persons')
+
 module.exports = {
   Query: {
-    sayHello: () => "Hello World!",
+    persons,
   }
 }
