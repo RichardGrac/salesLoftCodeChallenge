@@ -1,3 +1,44 @@
+type Query {
+  persons(
+    pagination: Pagination
+    sorting: Sorting
+  ): PersonsConnection!
+}
+
+#############################
+###    ENUMS & UNIONS     ###
+#############################
+
+enum PeopleSortField {
+  CREATED_AT
+  NAME
+  TITLE
+  UPDATED_AT
+}
+
+enum SortDirection {
+  ASC
+  DESC
+}
+
+#############################
+###        INPUTS         ###
+#############################
+
+input Sorting {
+  field: PeopleSortField!
+  direction: SortDirection!
+}
+
+input Pagination {
+  page: Int!
+  size: Int!
+}
+
+#############################
+###        TYPES          ###
+#############################
+
 type PageInfo {
   perPage: Int!
   currentPage: Int!
@@ -17,8 +58,4 @@ type Person {
 type PersonsConnection {
   pageInfo: PageInfo!
   edges: [Person!]!
-}
-
-type Query {
-  persons: PersonsConnection!
 }
