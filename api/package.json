@@ -4,6 +4,7 @@
   "description": "Users app for SalesLoft code challenge",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/RichardGrac/salesLoftCodeChallenge/issues"
   },
-  "homepage": "https://github.com/RichardGrac/salesLoftCodeChallenge#readme"
+  "homepage": "https://github.com/RichardGrac/salesLoftCodeChallenge#readme",
+  "dependencies": {
+    "apollo-server": "^2.25.1",
+    "dotenv": "^10.0.0",
+    "graphql": "^15.5.0",
+    "graphql-import": "^1.0.2",
+    "graphql-tools": "^7.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
