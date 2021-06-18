@@ -1,0 +1,19 @@
+{
+  "name": "salesloftcodechallenge",
+  "version": "1.0.0",
+  "description": "Users app for SalesLoft code challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichardGrac/salesLoftCodeChallenge.git"
+  },
+  "author": "Ricardo Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RichardGrac/salesLoftCodeChallenge/issues"
+  },
+  "homepage": "https://github.com/RichardGrac/salesLoftCodeChallenge#readme"
+}
