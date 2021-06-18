@@ -1,4 +1,9 @@
-function mapPersonToGQL({ id, display_name, email_address, title }) {
+function mapPersonToGQL({
+  id,
+  display_name,
+  email_address,
+  title
+}) {
   return {
     id,
     name: display_name,

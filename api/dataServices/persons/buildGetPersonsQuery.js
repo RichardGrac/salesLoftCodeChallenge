@@ -30,7 +30,7 @@ function applySorting(query, sorting = {}) {
   return query;
 }
 
-function buildGetPersonsQuery(url, args) {
+function getPersonsQuery(url, args = {}) {
   let query = url;
 
   query = applyFilters(query);
@@ -40,4 +40,4 @@ function buildGetPersonsQuery(url, args) {
   return query;
 }
 
-module.exports = buildGetPersonsQuery;
+module.exports = { getPersonsQuery };
