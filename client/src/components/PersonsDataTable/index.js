@@ -1,1 +1,0 @@
-export { PersonsDataTable } from "./PersonsDataTable";

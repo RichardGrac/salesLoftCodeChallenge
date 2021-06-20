@@ -22,4 +22,8 @@ export const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  centeredMessage: {
+    width: "100%",
+    textAlign: "center",
+  }
 }));
