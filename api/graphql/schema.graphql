@@ -3,6 +3,17 @@ type Query {
     pagination: Pagination
     sorting: Sorting
   ): PersonsConnection!
+  """
+  It returns the unique characters count for each text-string given.
+
+  - It does not distinguish between upper and lower case.
+  - It does not count spacing characters.
+
+  Returns null for non-valid string.
+  """
+  countUniqueCharacters(
+    input: CountUniqueCharactersInput!
+  ): [UniqueCharactersResponse!]!
 }
 
 #############################
@@ -35,9 +46,23 @@ input Pagination {
   size: Int!
 }
 
+input CountUniqueCharactersInput {
+  texts: [String]!
+}
+
 #############################
 ###        TYPES          ###
 #############################
+
+type UniqueCharactersResponse {
+  text: String
+  keyValuePair: [KeyNumericValuePair]
+}
+
+type KeyNumericValuePair {
+  key: String!
+  value: Int!
+}
 
 type PageInfo {
   perPage: Int!
