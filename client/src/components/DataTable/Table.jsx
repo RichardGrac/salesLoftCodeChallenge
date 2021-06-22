@@ -9,8 +9,9 @@ import Paper from '@material-ui/core/Paper';
 import { TableHead } from './TableHead'
 import { TableToolbar } from './TableToolbar'
 import { useStyles } from './useStyles'
-import { cleanGraphQLError } from '../../utilities'
 import { TableBody } from './TableBody'
+import { Loader } from '../Loader'
+import { ErrorComponent } from '../ErrorComponent'
 
 export function Table({
   columns,
@@ -38,19 +39,11 @@ export function Table({
   });
 
   if (loading) {
-    return (
-      <div data-testid="loading-message" className={classes.centeredMessage}>
-        Loading your data...
-      </div>
-    );
+    return <Loader loading />
   }
 
   if (error) {
-    return (
-      <div data-testid="error-message" className={classes.centeredMessage}>
-        An error occurred while fetching your data: {cleanGraphQLError(error)}
-      </div>
-    );
+    return <ErrorComponent error={error} />
   }
 
   const { edges, pageInfo } = data[queryNodeName];

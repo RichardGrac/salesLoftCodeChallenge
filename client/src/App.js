@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import { PersonsPage } from './pages/Persons'
+
+import { PersonsPage } from './pages/persons'
 
 export function App() {
   return (

@@ -52,7 +52,7 @@ it("renders a message while loading data", () => {
 
   const { getByTestId } = render(<Table />);
 
-  expect(getByTestId("loading-message")).toBeTruthy();
+  expect(getByTestId("loader")).toBeTruthy();
 });
 
 it("displays an error if something wrong happened with the request", () => {
@@ -64,7 +64,7 @@ it("displays an error if something wrong happened with the request", () => {
 
   const { getByTestId } = render(<Table />);
 
-  expect(getByTestId("error-message")).toBeTruthy();
+  expect(getByTestId("error-component")).toBeTruthy();
 });
 
 it("renders the data table", () => {
