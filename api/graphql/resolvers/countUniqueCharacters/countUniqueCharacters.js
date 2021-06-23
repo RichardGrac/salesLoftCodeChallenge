@@ -3,7 +3,6 @@ const { countUniqueCharactersMap } = require('./countUniqueCharactersMap')
 const { cleanAndGetUpperCaseText } = require('./cleanAndGetUpperCaseText')
 const { objectToArray, sortArrayOfObjects } = require("../../../helpers");
 
-
 const countUniqueCharacters = (parent, { input: { texts } }) => {
   const results = countCharacters(texts);
   return buildSortedResponse(results);

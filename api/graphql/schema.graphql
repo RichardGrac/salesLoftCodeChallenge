@@ -14,6 +14,22 @@ type Query {
   countUniqueCharacters(
     input: CountUniqueCharactersInput!
   ): [UniqueCharactersResponse!]!
+  """
+  It returns the possible duplicates for the given array of strings.
+
+  - A minimum of 2 strings should be provided.
+  - Each string should be at least of 5 characters
+
+  A duplicate is based in different criterias:
+
+  1) They are the same string with different casing or with extra spaces
+  2) They are likely one different character away (pale -> bale)
+  3) They are one extra character away (pale -> ple)
+  4) They are one missed character away (pales -> pale)
+  """
+  findPossibleDuplicates(
+    input: FindPossibleDuplicatesInput!
+  ): [FindPossibleDuplicatesResponse!]!
 }
 
 #############################
@@ -50,9 +66,18 @@ input CountUniqueCharactersInput {
   texts: [String]!
 }
 
+input FindPossibleDuplicatesInput {
+  texts: [String!]!
+}
+
 #############################
 ###        TYPES          ###
 #############################
+
+type FindPossibleDuplicatesResponse {
+  source: String!
+  duplicate: String!
+}
 
 type UniqueCharactersResponse {
   text: String
