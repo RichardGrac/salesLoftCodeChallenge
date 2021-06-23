@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import PropTypes from 'prop-types'
 
 import TableContainer from '@material-ui/core/TableContainer'
@@ -9,29 +9,31 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import TableBody from '@material-ui/core/TableBody'
 
-export function CountCharacterTable({ keyValuePairArray }) {
-  if (!keyValuePairArray || !keyValuePairArray.length) {
-    return null;
-  }
-
+export function SimpleTable({ headers, columns }) {
   return (
     <div
       style={{ display: 'flex', justifyContent: "center" }}
-      data-testid="count-character-table"
+      data-testid="simple-table"
     >
-      <TableContainer component={Paper} style={{ maxWidth: "50%" }}>
+      <TableContainer component={Paper} style={{ maxWidth: "75%" }}>
         <Table aria-label="simple table" size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Character</TableCell>
-              <TableCell>Count</TableCell>
+              {headers.map((header, i) => (
+                <TableCell key={`header-${i}`}>
+                  {header}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {keyValuePairArray.map((keyValuePair) => (
-              <TableRow key={keyValuePair.key}>
-                <TableCell>{keyValuePair.key}</TableCell>
-                <TableCell>{keyValuePair.value}</TableCell>
+            {columns.map((cellValues, i) => (
+              <TableRow key={`row-${i}`}>
+                {cellValues.map((cellValue, j) => (
+                  <TableCell key={`cell-${i}-${j}`}>
+                    {cellValue}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           </TableBody>
@@ -41,10 +43,7 @@ export function CountCharacterTable({ keyValuePairArray }) {
   );
 }
 
-CountCharacterTable.propTypes = {
-  keyValuePairArray: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string,
-      value: PropTypes.number,
-    }).isRequired
-  ),
+SimpleTable.propTypes = {
+  headers: PropTypes.arrayOf(PropTypes.node),
+  columns: PropTypes.arrayOf(PropTypes.node),
 }

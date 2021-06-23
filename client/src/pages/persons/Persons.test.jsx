@@ -10,6 +10,10 @@ jest.mock("./CountCharactersModal", () => ({
   CountCharactersModal: () => <div data-testid="modal" />,
 }));
 
+jest.mock("./PossibleDuplicatesModal", () => ({
+  PossibleDuplicatesModal: () => <div data-testid="duplicates-modal" />,
+}));
+
 it("renders the persons page", () => {
   const { queryByTestId } = render(<PersonsPage />);
   expect(queryByTestId("persons-page")).toBeTruthy();

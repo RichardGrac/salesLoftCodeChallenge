@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { CountCharactersContent, CountCharactersModal } from './CountCharactersModal'
+import { PossibleDuplicatesContent, PossibleDuplicatesModal } from './PossibleDuplicatesModal'
 
 import * as ApolloHooks from '@apollo/react-hooks'
 
@@ -10,17 +10,17 @@ jest.mock("../../components/InformativeModal", () => ({
 }));
 
 jest.mock("../../components/SimpleTable", () => ({
-  SimpleTable: () => <div data-testid="table" />
+  SimpleTable: () => <div data-testid="simple-table" />
 }));
 
-const mockData = { data: { countUniqueCharacters: [] } };
+const mockData = { data: { findPossibleDuplicates: [] } };
 const mockHandleClose = jest.fn();
 
 it("renders the Modal", () => {
   spyUseQuery.mockReturnValue(mockData);
 
   const { getByTestId } = render(
-    <CountCharactersModal
+    <PossibleDuplicatesModal
       isOpen
       texts={[]}
       handleClose={mockHandleClose}
@@ -34,7 +34,7 @@ it("does not render the Modal", () => {
   spyUseQuery.mockReturnValue(mockData);
 
   const { queryByTestId } = render(
-    <CountCharactersModal
+    <PossibleDuplicatesModal
       isOpen={false}
       texts={[]}
       handleClose={mockHandleClose}
@@ -44,24 +44,29 @@ it("does not render the Modal", () => {
   expect(queryByTestId("modal")).toBeFalsy();
 });
 
-describe("CountCharactersContent tests", () => {
+describe("PossibleDuplicatesContent tests", () => {
   it("returns null", () => {
-    const { queryByTestId } = render(<CountCharactersContent data={null} />);
+    const { queryByTestId } = render(<PossibleDuplicatesContent data={null} />);
 
+    expect(queryByTestId("no-duplicates")).toBeFalsy();
     expect(queryByTestId("simple-table")).toBeFalsy();
   });
 
-  it("renders at least one simple table component", () => {
+  it("returns info message when no duplicates were found", () => {
     const { queryByTestId } = render(
-      <CountCharactersContent
-        data={{
-          countUniqueCharacters: [
-            { text: "text", keyValuePair: [{ key: "key", value: "value"}] }
-          ]
-        }}
-      />
+      <PossibleDuplicatesContent data={{ findPossibleDuplicates: [] }} />
     );
 
+    expect(queryByTestId("no-duplicates")).toBeTruthy();
     expect(queryByTestId("simple-table")).toBeFalsy();
+  });
+
+  it("renders the simple table component", () => {
+    const { queryByTestId } = render(
+      <PossibleDuplicatesContent data={{ findPossibleDuplicates: [{}] }} />
+    );
+
+    expect(queryByTestId("no-duplicates")).toBeFalsy();
+    expect(queryByTestId("simple-table")).toBeTruthy();
   });
 })
