@@ -1,12 +1,15 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import VisibilityIcon from '@material-ui/icons/Visibility'
+import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button'
+import Link from '@material-ui/core/Link'
 
 import { Table as DataTable } from '../../components/DataTable'
 import { GET_PERSONS } from '../../graphql'
 import { CountCharactersModal } from './CountCharactersModal'
 import { PossibleDuplicatesModal } from './PossibleDuplicatesModal'
+import { Spacer } from '../../components/Spacer'
 
 const peopleSortFieldMap = {
   name: "NAME",
@@ -39,11 +42,21 @@ export function PersonsPage() {
         texts={texts}
         isOpen={isOpenDuplicates}
       />
-      <br />
-      <Typography variant="h4" gutterBottom>
+      <Spacer size="small" />
+      <Typography variant="h4" color="textPrimary">
         SalesLoft Code Challenge
       </Typography>
-      <br />
+      <Link
+        variant="subtitle1"
+        color="textSecondary"
+        href="https://ricardo-garcia.com.mx/"
+        rel="noopener noreferrer"
+        target="_blank"
+        style={{ textDecoration: "none" }}
+      >
+        by Ricardo Garcia
+      </Link>
+      <Spacer />
       <Button
         variant="contained"
         color="primary"
@@ -53,18 +66,17 @@ export function PersonsPage() {
       >
         Count characters
       </Button>
-      {' '}
+      <Spacer orientation="horizontal" />
       <Button
         variant="contained"
         color="secondary"
         onClick={onHandleClick(selectedItems, setTexts, setIsOpenDuplicates)}
-        startIcon={<VisibilityIcon />}
+        startIcon={<SearchIcon />}
         disabled={selectedItems.length === 0}
       >
         Find duplicates
       </Button>
-      <br />
-      <br />
+      <Spacer />
       <DataTable
         query={GET_PERSONS}
         queryNodeName="persons"

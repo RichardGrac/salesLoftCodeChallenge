@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+require("dotenv").config();
 
 const { ApolloServer } = require("apollo-server");
 const { importSchema } = require("graphql-import");
@@ -12,8 +12,6 @@ const schema = makeExecutableSchema({ typeDefs, resolvers });
 const server = new ApolloServer({
   schema,
 });
-
-dotenv.config();
 
 server
   .listen({ port: PORT })

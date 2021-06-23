@@ -62,12 +62,9 @@ export function InformativeModal({
 InformativeModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  description: PropTypes.string,
+  title: PropTypes.node,
+  description: PropTypes.node,
   loading: PropTypes.bool,
   error: PropTypes.object,
-  content: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ])
+  content: PropTypes.node,
 }

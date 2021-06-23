@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import { COUNT_UNIQUE_CHARACTERS } from '../../graphql'
 import { InformativeModal } from '../../components/InformativeModal'
 import { SimpleTable } from '../../components/SimpleTable'
+import { Spacer } from '../../components/Spacer'
 
 function CountCharactersModalComponent({
    handleClose,
@@ -44,7 +45,7 @@ export function CountCharactersContent({ data }) {
       <Typography variant="overline" display="block" gutterBottom>
         {edge.text}
       </Typography>
-      <br/>
+      <Spacer />
       {edge.keyValuePair && edge.keyValuePair.length ? (
         <SimpleTable
           headers={["Character", "Count"]}

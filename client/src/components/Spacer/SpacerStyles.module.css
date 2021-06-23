@@ -1,0 +1,76 @@
+.spacer {
+  pointer-events: none;
+  visibility: hidden;
+  display: inline-block;
+}
+/* ------------- SMALL ------------- */
+.small-vertical {
+  height: 8px;
+  display: block;
+  width: 100%;
+}
+.small-horizontal {
+  width: 8px;
+}
+@media screen and(max-width: 446px) {
+  .small-vertical {
+    height: 6px;
+  }
+  .small-horizontal {
+    width: 6px;
+  }
+}
+
+/* ------------- DEFAULT ------------- */
+.default-vertical {
+  height: 16px;
+  display: block;
+  width: 100%;
+}
+.default-horizontal {
+  width: 16px;
+}
+@media screen and(max-width: 446px) {
+  .default-vertical {
+    height: 12px;
+  }
+  .default-horizontal {
+    width: 12px;
+  }
+}
+
+/* ------------- MEDIUM ------------- */
+.medium-vertical {
+  height: 24px;
+  display: block;
+  width: 100%;
+}
+.medium-horizontal {
+  width: 24px;
+}
+@media screen and(max-width: 446px) {
+  .medium-vertical {
+    height: 16px;
+  }
+  .medium-horizontal {
+    width: 16px;
+  }
+}
+
+/* ------------- LARGE ------------- */
+.large-vertical {
+  height: 32px;
+  display: block;
+  width: 100%;
+}
+.large-horizontal {
+  width: 32px;
+}
+@media screen and(max-width: 446px) {
+  .large-vertical {
+    height: 20px;
+  }
+  .large-horizontal {
+    width: 20px;
+  }
+}
