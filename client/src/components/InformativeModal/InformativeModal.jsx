@@ -20,6 +20,7 @@ export function InformativeModal({
   error,
   content,
 }) {
+  const displayContent = Boolean(loading) === false && Boolean(error) === false;
   return (
     <Dialog
       open={isOpen}
@@ -36,20 +37,22 @@ export function InformativeModal({
           {title}
         </DialogTitle>
       ) : null}
-      <DialogContent dividers>
-        <Loader loading={loading} />
-        <ErrorComponent error={error} />
-        {description ? (
-          <DialogContentText
-            id="scroll-dialog-description"
-            tabIndex={-1}
-            data-testid="description"
-          >
-            {description}
-          </DialogContentText>
-        ) : null}
-        {content}
-      </DialogContent>
+      <Loader loading={loading} />
+      <ErrorComponent error={error} />
+      {displayContent ? (
+        <DialogContent dividers>
+          {description ? (
+            <DialogContentText
+              id="scroll-dialog-description"
+              tabIndex={-1}
+              data-testid="description"
+            >
+              {description}
+            </DialogContentText>
+          ) : null}
+          {content}
+        </DialogContent>
+      ) : null}
       <DialogActions>
         <Button onClick={handleClose} color="primary" data-testid="ok-button">
           OK

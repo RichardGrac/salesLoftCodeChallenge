@@ -7,12 +7,11 @@ import Checkbox from '@material-ui/core/Checkbox'
 import TableSortLabel from '@material-ui/core/TableSortLabel'
 
 export function TableHead({
+  allSelected,
   columns,
   onSelectAllClick,
   order,
   orderBy,
-  numSelected,
-  rowCount,
   onRequestSort,
 }) {
   const createSortHandler = (property) => (event) => {
@@ -36,8 +35,7 @@ export function TableHead({
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
+            checked={allSelected}
             onChange={onSelectAllClick}
             inputProps={{
               'aria-label': 'check all rows',
@@ -71,12 +69,11 @@ export function TableHead({
 }
 
 TableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
+  allSelected: PropTypes.bool.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

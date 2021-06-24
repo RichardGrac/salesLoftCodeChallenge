@@ -47,6 +47,7 @@ export function Table({
   }
 
   const { edges, pageInfo } = data[queryNodeName];
+  const allSelected = selectedItems.length === pageInfo.totalCount;
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -54,12 +55,12 @@ export function Table({
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      setSelectedItems(edges);
+  const handleSelectAllClick = () => {
+    if (allSelected) {
+      setSelectedItems([]);
       return;
     }
-    setSelectedItems([]);
+    setSelectedItems(mergeItems(selectedItems, edges));
   };
 
   const handleChangePage = (event, newPage) => {
@@ -84,12 +85,11 @@ export function Table({
             aria-label="data table"
           >
             <TableHead
-              numSelected={selectedItems.length}
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={edges.length}
+              allSelected={allSelected}
               columns={columns}
             />
             <TableBody
@@ -113,6 +113,26 @@ export function Table({
       </Paper>
     </div>
   );
+}
+
+/**
+ * This function merges all new selected items to the
+ * already selected items -without- duplicating.
+ */
+export function mergeItems(selectedItems, newSelectedItems) {
+  const selectedItemsObj = {};
+
+  selectedItems.map(item => {
+    selectedItemsObj[item.id] = item;
+  });
+
+  newSelectedItems.map(newSelected => {
+    if (!selectedItemsObj[newSelected.id]) {
+      selectedItemsObj[newSelected.id] = newSelected;
+    }
+  });
+
+  return Object.values(selectedItemsObj);
 }
 
 Table.propTypes = {

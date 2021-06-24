@@ -11,8 +11,6 @@ export function Loader({ loading }) {
 
   return (
     <div style={{ textAlign: "center", margin: "1rem 0" }} data-testid="loader">
-      <CircularProgress aria-label="loading data..." />
-      <Spacer/>
       🧙‍♀️Loading the magic 🎩...
     </div>
   );

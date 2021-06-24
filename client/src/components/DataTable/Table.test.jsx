@@ -3,7 +3,7 @@ import { ApolloError } from "apollo-client";
 import { fireEvent, render } from '@testing-library/react'
 import * as ApolloHooks from '@apollo/react-hooks'
 
-import { Table } from './Table'
+import { mergeItems, Table } from './Table'
 
 let spyUseQuery;
 
@@ -117,3 +117,28 @@ it("sorts to the opposite order", () => {
     }
   });
 });
+
+describe("mergeItems tests", () => {
+  it("merges correctly", () => {
+    expect(
+      mergeItems(
+        [
+          { id: "1" },
+          { id: "2" },
+          { id: "3" },
+        ],
+        [
+          { id: "3" },
+          { id: "4" },
+          { id: "5" },
+        ]
+      )
+    ).toEqual([
+      { id: "1" },
+      { id: "2" },
+      { id: "3" },
+      { id: "4" },
+      { id: "5" },
+    ]);
+  });
+})
